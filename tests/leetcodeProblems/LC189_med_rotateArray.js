@@ -1,4 +1,4 @@
-const rotateArray = (nums, l) => {
+const LC189_med_rotateArray = (nums, l) => {
     l = l % nums.length;
     let k = nums.length - l;
     const a = nums.slice(k, nums.length).concat(nums.slice(0, k));
@@ -7,5 +7,5 @@ const rotateArray = (nums, l) => {
 
 let nums = [1, 2];
 //let nums = [-1, -100, 3, 99];
-rotateArray(nums, 5);
+LC189_med_rotateArray(nums, 5);
 console.log(nums);

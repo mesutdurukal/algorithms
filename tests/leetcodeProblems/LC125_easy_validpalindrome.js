@@ -2,7 +2,7 @@
  * @param {string} s
  * @return {boolean}
  */
-var isPalindrome_ = function (s) {
+export var isPalindrome__ = function (s) {
     const replaced = s.toLowerCase().replace(/[^a-z0-9]/gi, '');
     let stIndex = 0;
     let endIndex = replaced.length - 1;
@@ -14,7 +14,7 @@ var isPalindrome_ = function (s) {
     return true;
 };
 
-var isPalindrome = function (str) {
+export var isPalindrome_ = function (str) {
     const replaced = str.toLowerCase().replace(/[^a-z0-9]/gi, '');
     let len = str.length;
     let half = Math.floor(len /2)
@@ -24,18 +24,19 @@ var isPalindrome = function (str) {
     return true;
 };
 
+export const isPalindrome = (str) => str === str.split("").reverse().join("");
+
 const functions = {
     isPalindrome,
     isPalindrome_
 };
 
 if (process.argv.length <= 3) {
-    console.log("Please provide both a function name and a parameter.");
+    console.log("Running palindrome functions without function name and a parameter.");
 } else {
     // Get the function name and parameter from the command line arguments
     const functionName = process.argv[2];
     const parameter = process.argv[3];
-
     console.log(functions[functionName](parameter))
 }
 
