@@ -1,11 +1,11 @@
-const node = (val) => {
+export const node = (val) => {
     return {
         value: val,
         next: null,
     };
 };
 
-class LinkedList {
+export class LinkedList {
     constructor(val) {
         const newNode = node(val);
         this.head = newNode;
@@ -180,7 +180,7 @@ class LinkedList {
         return false;
     }
 
-    hasLoop() {
+    hasLoop__() {
         if (!this.head)
             // empty
             return false;
@@ -506,4 +506,4 @@ function test() {
     myLinkedList.printList();
 }
 
-test();
+//test();

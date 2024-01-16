@@ -12,6 +12,7 @@ class bst {
     }
 
     DFS_inorder() {
+        // Deep First - In order
         let results = [];
         function traverse(node) {
             if (node.left) traverse(node.left);
@@ -23,6 +24,7 @@ class bst {
     }
 
     DFS_postorder() {
+        // Deep First - Post order
         let results = [];
         function traverse(node) {
             if (node.left) traverse(node.left);
@@ -34,6 +36,7 @@ class bst {
     }
 
     DFS_preorder() {
+        // Deep First - Pre order
         let results = [];
         function traverse(node) {
             results.push(node.value);
@@ -45,6 +48,7 @@ class bst {
     }
 
     BFS() {
+        // Breadth-First Search
         let currentNode = this.root;
         let results = [];
         let queue = [];
