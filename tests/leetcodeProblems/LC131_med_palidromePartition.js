@@ -20,8 +20,9 @@ s contains only lowercase English letters.
 
 const isPalindrome = (str) => str === str.split('').reverse().join('');
 const listForAnIndex = [];
-const fullList = [];
+let fullList = [];
 const partition = (inputString, idx = 0) => {
+    if (idx == 0) fullList = [];
     if (idx === inputString.length) {
         fullList.push([...listForAnIndex]);
         return;
@@ -37,4 +38,5 @@ const partition = (inputString, idx = 0) => {
     return fullList;
 };
 
-console.log(partition('aabaa'));
+console.log(partition('aab'));
+console.log(partition('a'));
