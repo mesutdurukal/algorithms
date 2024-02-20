@@ -2,22 +2,30 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
 var permute = function (nums) {
-    const result = [];
-    const recursiveLists = (nums, reserved) => {
-        if (nums.length === 0) {
-            result.push(reserved);
-            return;
-        }
+    if (nums.length == 1) return [nums];
+    else if (nums.length == 2)
+        return [
+            [nums[0], nums[1]],
+            [nums[1], nums[0]],
+        ];
+    else {
+        let wholeList = [];
         for (let i = 0; i < nums.length; i++) {
-            recursiveLists(
-                [...nums.slice(0, i), ...nums.slice(i + 1)],
-                [...reserved, nums[i]]
+            let subPerms = permute(
+                nums.filter((element, index) => index !== i)
             );
+            for (let j = 0; j < subPerms.length; j++) {
+                subPerms[j].unshift(nums[i]);
+            }
+            wholeList = wholeList.concat(subPerms);
         }
-    };
-    recursiveLists(nums, []);
-    return result;
+        return wholeList;
+    }
 };
 
 permute([1, 5, 3]);

@@ -2,6 +2,33 @@
  * @param {string} digits
  * @return {string[]}
  */
+
+var letterCombinations_ = function (digits) {
+    const dict = {
+        2: 'abc',
+        3: 'def',
+        4: 'ghi',
+        5: 'jkl',
+        6: 'mno',
+        7: 'pqrs',
+        8: 'tuv',
+        9: 'wxyx',
+    };
+    const addCombinationsForANewDigit = (combinations, s) => {
+        if (combinations.length == 0) return s.split('');
+        else {
+            for (let i = 0; i < combinations.length; i++) {
+                addCombinationsForANewDigit(combinations, digits[i]);
+            }
+        }
+    };
+
+    let combinations = [];
+    for (let i = 0; i < digits.length; i++) {
+        addCombinationsForANewDigit(combinations, digits[i]);
+    }
+};
+
 var letterCombinations = function (digits) {
     if (!digits.length) {
         return [];
@@ -35,3 +62,5 @@ var letterCombinations = function (digits) {
 
     return res;
 };
+
+letterCombinations('23');

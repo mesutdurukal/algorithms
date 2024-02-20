@@ -3,7 +3,7 @@
  * @param {number} divisor
  * @return {number}
  */
-var divide = function (dividend, divisor) {
+var divide__ = function (dividend, divisor) {
     let sum = 0;
     let i = 0;
     let res;
@@ -38,6 +38,29 @@ var divide = function (dividend, divisor) {
     f = res < -2147483647 ? -2147483647 : res;
     f = res > 2147483647 ? 2147483647 : res;
     return f;
+};
+
+var divide = function (dividend, divisor) {
+    const isNegative = Math.sign(divisor) !== Math.sign(dividend);
+    dividend = Math.abs(dividend);
+    divisor = Math.abs(divisor);
+
+    let result = 0;
+    while (divisor <= dividend) {
+        let value = divisor;
+        let multiple = 1;
+        while (value + value <= dividend) {
+            value += value;
+            multiple += multiple;
+        }
+        dividend = dividend - value;
+        result += multiple;
+    }
+
+    if (result > 2 ** 31 - 1) {
+        return isNegative ? -(2 ** 31) : 2 ** 31 - 1;
+    }
+    return isNegative ? -result : result;
 };
 
 divide(2147483647, 2);
