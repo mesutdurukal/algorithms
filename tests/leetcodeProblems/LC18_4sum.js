@@ -24,9 +24,29 @@ const findPairs = (numsList, target, numOfPairs, path) => {
     }
 };
 
-var fourSum = function (nums, target) {
+var fourSum_ = function (nums, target) {
     findPairs(nums, target, 4, []);
     return finalList;
+};
+
+var fourSum = function (nums, target) {
+    let res = [];
+    const generatePath = (index, path) => {
+        if (path.length == 3) {
+            let list = nums.slice(index);
+            let ind = list.indexOf(target);
+            if (ind > -1) {
+                res.push([...path, list[ind]]);
+            }
+            return;
+        }
+        for (let i = index; i < nums.length; i++) {
+            generatePath(i + 1, [...path, nums[i]]);
+        }
+    };
+
+    generatePath(0, []);
+    return res;
 };
 
 let a = fourSum([1, 0, -1, 0, -2, 2], 0);

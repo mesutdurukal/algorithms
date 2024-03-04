@@ -11,5 +11,21 @@ var uniquePaths = function (m, n) {
     return possibleMoves;
 };
 
-let a = uniquePaths(51, 9);
+var uniquePaths_ = (m, n) => {
+    const addNodesToPath = (currentNode) => {
+        if (currentNode[0] == m - 1 || currentNode[1] == n - 1) {
+            combinations++;
+            return;
+        } else {
+            addNodesToPath([currentNode[0] + 1, currentNode[1]]);
+            addNodesToPath([currentNode[0], currentNode[1] + 1]);
+        }
+    };
+    let combinations = 0;
+    let currentNode = [0, 0];
+    addNodesToPath(currentNode);
+    return combinations;
+};
+let a = uniquePaths(3, 2);
+let ab = uniquePaths(19, 13);
 let b = 5;

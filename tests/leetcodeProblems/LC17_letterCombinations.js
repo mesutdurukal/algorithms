@@ -29,7 +29,7 @@ var letterCombinations_ = function (digits) {
     }
 };
 
-var letterCombinations = function (digits) {
+var letterCombinations__ = function (digits) {
     if (!digits.length) {
         return [];
     }
@@ -60,6 +60,35 @@ var letterCombinations = function (digits) {
 
     backtrack(0, '');
 
+    return res;
+};
+const letterCombinations = (digits) => {
+    let res = [];
+    const digitToLetters = {
+        2: 'abc',
+        3: 'def',
+        4: 'ghi',
+        5: 'jkl',
+        6: 'mno',
+        7: 'pqrs',
+        8: 'tuv',
+        9: 'wxyz',
+    };
+
+    const generatePath = (index, path) => {
+        if (index == digits.length) {
+            res.push(path);
+            return;
+        }
+
+        for (let i = 0; i < digitToLetters[digits[index]].length; i++) {
+            generatePath(index + 1, path + digitToLetters[digits[index]][i]);
+        }
+    };
+
+    for (let i = 0; i < digits.length; i++) {
+        generatePath(0, '');
+    }
     return res;
 };
 

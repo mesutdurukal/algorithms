@@ -21,7 +21,7 @@ var threeSum_ = function (nums) {
  * @param {number[]} nums
  * @return {number[][]}
  */
-var threeSum = function (nums) {
+var threeSum__ = function (nums) {
     const res = [];
     nums.sort((a, b) => a - b);
     for (let i = 0; i < nums.length; i++) {
@@ -50,4 +50,82 @@ var threeSum = function (nums) {
     return res;
 };
 
+var threeSum___ = function (nums) {
+    let res = [];
+    nums.sort((a, b) => a - b);
+    for (let i = 0; i < nums.length - 2; i++) {
+        if (i > 0 && nums[i] == nums[i - 1]) {
+            continue;
+        }
+        let l = i + 1;
+        let r = nums.length - 1;
+        while (l < r) {
+            let val = nums[i] + nums[l] + nums[r];
+            if (val == 0) {
+                res.push([nums[i], nums[l], nums[r]]);
+                l++;
+                while (nums[l + 1] == nums[l]) {
+                    l++;
+                }
+            }
+            if (val < 0) {
+                l++;
+            }
+            if (val > 0) {
+                r--;
+            }
+        }
+    }
+    return res;
+};
+
+var threeSum = function (nums) {
+    let res = [];
+    nums.sort((a, b) => a - b);
+    for (let i = 0; i < nums.length - 2; i++) {
+        if (nums[i] == nums[i - 1]) {
+            continue;
+        }
+        let l = i + 1;
+        let r = nums.length - 1;
+        while (l < r) {
+            if (nums[i] + nums[l] + nums[r] == 0) {
+                res.push([nums[i], nums[l], nums[r]]);
+                let lastVal = nums[l];
+                while (nums[l] == lastVal) {
+                    l++;
+                }
+            }
+            if (nums[i] + nums[l] + nums[r] > 0) {
+                r--;
+            }
+            if (nums[i] + nums[l] + nums[r] < 0) {
+                l++;
+            }
+        }
+    }
+    return res;
+};
+
+var threeSumClosest = function (nums, target) {
+    let temp;
+    nums.sort((a, b) => a - b);
+    for (let i = 0; i < nums.length - 2; i++) {
+        let l = i + 1;
+        let r = nums.length - 1;
+        let distance = Infinity;
+        while (l < r) {
+            let curVal = nums[i] + nums[l] + nums[r];
+            let curDis = Math.abs(target - curVal);
+            if (curDis < distance) {
+                temp = curVal;
+                distance = curDis;
+            }
+            l++;
+        }
+    }
+    return temp;
+};
+
+console.log(threeSumClosest([0, 0, 0], 1));
 console.log(threeSum([-1, 0, 1, 2, -1, -4]));

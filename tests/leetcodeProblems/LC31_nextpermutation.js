@@ -29,4 +29,4 @@ const reverse = (nums, start, end) => {
     }
 };
 
-nextPermutation([3, 2, 1]);
+nextPermutation([1, 3, 2]);

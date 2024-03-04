@@ -2,7 +2,7 @@
  * @param {string} s
  * @return {number}
  */
-var lengthOfLongestSubstring = function (s) {
+var lengthOfLongestSubstring_ = function (s) {
     let st = 0;
     let currentLen = 0;
     let max = 0;
@@ -27,4 +27,25 @@ var lengthOfLongestSubstring = function (s) {
     return max;
 };
 
-console.log(lengthOfLongestSubstring('pwwkew'));
+var lengthOfLongestSubstring = function (s) {
+    let max = 0;
+    let index = 0;
+    while (index < s.length) {
+        let chars = new Set();
+        let len = 0;
+        for (let i = index; i < s.length; i++) {
+            if (chars.has(s[i])) {
+                if (len > max) max = len;
+                index += s.substring(index, s.length - 1).indexOf(s[i]);
+                break;
+            } else {
+                chars.add(s[i]);
+                len++;
+            }
+        }
+        index++;
+    }
+    return max;
+};
+
+console.log(lengthOfLongestSubstring(' '));

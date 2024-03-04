@@ -22,4 +22,27 @@ var threeSumClosest = function (nums, target) {
     }
     return minVal;
 };
-threeSumClosest([1, 1, 1, 0], -100);
+// threeSumClosest([1, 1, 1, 0], -100);
+const digitToLetters = {
+    2: 'abc',
+    3: 'def',
+    4: 'ghi',
+    5: 'jkl',
+    6: 'mno',
+    7: 'pqrs',
+    8: 'tuv',
+    9: 'wxyz',
+};
+
+var letterCombinations = function (digits) {
+    let comb = [];
+    const rec = (digs, path) => {
+        if (digs.length == 0) {
+            comb.push(digs);
+            return;
+        }
+        return rec(digs[(1, digs.length - 1)], [...path]);
+    };
+    for (let i = 0; i < digits.length; i++) {}
+};
+letterCombinations('23');

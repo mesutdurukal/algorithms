@@ -2,65 +2,27 @@
  * @param {number[][]} matrix
  * @return {number[]}
  */
-let newArray = [];
-let i = 0;
-let j = 0;
-let direction = 'r';
-let spot = 0;
-let ceil = 0;
-let rL;
-let lL = 0;
-let ground;
-const calcNewCoord = () => {
-    if (direction == 'r') {
-        j++;
-    }
-    if (direction == 'd') {
-        i++;
-    }
-    if (direction == 'l') {
-        j--;
-    }
-    if (direction == 'u') {
-        i--;
-    }
-};
-
-const calcDir = () => {
-    if (direction == 'r') {
-        if (j == rL) {
-            direction = 'd';
-            ceil++;
-        }
-    }
-    if (direction == 'd') {
-        if (i == ground) {
-            direction = 'l';
-            rL--;
-        }
-    }
-    if (direction == 'l') {
-        if (j == lL) {
-            direction = 'u';
-            ground--;
-        }
-    }
-    if (direction == 'u') {
-        if (i == ceil) {
-            direction = 'r';
-            lL++;
-        }
-    }
-};
-
 var spiralOrder = function (matrix) {
-    rL = matrix[0].length - 1;
-    ground = matrix.length - 1;
-    while (spot < matrix.length * matrix[0].length) {
+    let horizantalL = matrix[0].length - 1;
+    let vertocalL = matrix.length - 1;
+    let direction = 'r';
+    let newArray = [];
+    let i = 0;
+    let j = 0;
+    while (horizantalL > 0 || vertocalL > 0) {
         newArray.push(matrix[i][j]);
-        spot++;
-        calcDir();
-        calcNewCoord();
+        if (direction == 'r') {
+            j++;
+        }
+        if (direction == 'l') {
+            j--;
+        }
+        if (direction == 'r') {
+            i++;
+        }
+        if (direction == 'r') {
+            i--;
+        }
     }
     return newArray;
 };
