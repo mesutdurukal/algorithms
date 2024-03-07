@@ -18,4 +18,5 @@ var combinationSum = function (candidates, target) {
     return fullList;
 };
 
+combinationSum([7, 2, 3, 1, 5], 7);
 combinationSum([2, 3, 6, 7], 7);
