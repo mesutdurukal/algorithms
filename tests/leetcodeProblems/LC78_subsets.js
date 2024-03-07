@@ -4,22 +4,21 @@
  */
 var subsets = function (nums) {
     let allSubset = [];
-    let bag = [];
 
-    var makeSubsetFrom = function (startIndex) {
-        allSubset.push([...bag]);
+    var makeSubsetFrom = function (startIndex, path) {
+        allSubset.push([...path]);
         if (startIndex == nums.length) {
             return;
         }
 
         for (let i = startIndex; i < nums.length; i++) {
-            bag.push(nums[i]); // put this element into bag
-            makeSubsetFrom(i + 1); // make subset from remaining elements
-            bag.pop(); // undo selection
+            path.push(nums[i]); // put this element into bag
+            makeSubsetFrom(i + 1, path); // make subset from remaining elements
+            path.pop(); // undo selection
         }
         return;
     };
-    makeSubsetFrom(0);
+    makeSubsetFrom(0, []);
     return allSubset;
 };
 
